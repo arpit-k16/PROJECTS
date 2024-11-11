@@ -1,4 +1,11 @@
 ![image](https://github.com/user-attachments/assets/0f543e83-8ec8-4a7a-89a5-c477e48d93ea)
+![image](https://github.com/user-attachments/assets/5e65a28f-2094-46f4-b61b-3be441c496ad)
+![image](https://github.com/user-attachments/assets/96895ba8-874a-4f1f-b8de-384e55322d2e)
+![image](https://github.com/user-attachments/assets/be559a26-b3e7-497b-8998-e9c783c761ff)
+![Uploading image.png…]()
+
+
+
 # Weatherly 🌦️
 
 Weatherly is a simple weather forecast and rain alert web application. Users can enter a city name to get a 5-day weather forecast and check if rain is expected in that location.
