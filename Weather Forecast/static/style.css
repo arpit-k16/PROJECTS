@@ -1,0 +1,158 @@
+body {
+    /* background: linear-gradient(135deg, #2a2a72, #009ffd); */
+    background-image: url(/static/images/pngtree-3d-render-of-majestic-clouds-in-the-sky-image_3694765.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; /* or 'contain' if you want it to fit without cropping */
+    background-position: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    transition: background-image 1s ease-in-out;
+    
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4); /* Adjust opacity and color */
+    z-index: -1;
+}
+
+input[type="text"] {
+    background-color: #f9f9f9;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 1);
+}
+
+.container {
+    width: 95%;
+    max-width: 1000px;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.34);
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+input[type="text"] {
+    background-color: rgba(255, 255, 255, 0.3); 
+    width: 70%;
+    padding: 0.8rem;
+    border: 2px  #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #009ffd;
+}
+
+
+button {
+    padding: 0.8rem 1.5rem;
+    background-color: #009ffd;
+    border: none;
+    color:  #333;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition:0.3s ease;
+    /* background-color: rgba(255, 255, 255, 0.3);  */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 1);
+}
+
+button:hover {
+    background-color: #006bb3;
+}
+
+.result-box {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+    padding: 1rem;
+    border: 2px  #ddd;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.3); 
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 1);
+}
+
+/* Grid for forecast dates */
+.forecast-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.forecast-item {
+    flex: 1 1 calc(33.333% - 1rem);
+    text-align: left;
+    padding: 1rem;
+    background-color: #e9f5ff;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    min-width: 200px;
+}
+
+.forecast-item h3 {
+    color: #333;
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+}
+
+.forecast-item p {
+    margin: 0.2rem 0;
+    font-size: 0.95rem;
+}
+
+.rainy-background {
+    background-image: url('/static/images/rain.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh; /* Ensures the background covers the full viewport */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-background{
+    background-image: url('/static/images/file-1gRKdWOsPTnxqEE4uS4e1VvA.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh; /* Ensures the background covers the full viewport */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}

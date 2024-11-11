@@ -1,0 +1,174 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weatherly-Weather Forecast</title>
+    <link rel="icon" href="/static/images/logo-removebg-preview (1).png" type="image/png">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <form id="forecastForm" class="input-box">
+            <input type="text" id="place" placeholder="Enter location..." required>
+            <button type="submit">Get Forecast</button>
+        </form>
+        <div id="result" class="result-box hidden"></div>
+    </div>
+   
+    
+    <script>
+        document.getElementById('forecastForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const place = document.getElementById('place').value;
+
+            // Fetch the forecast data from your server
+            const response = await fetch(`/forecast?place=${place}`);
+            const result = await response.json();
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = ''; // Clear previous results
+            resultElement.classList.remove('hidden'); // Make sure the result box is visible
+
+            if (response.ok) {
+                resultElement.innerHTML = `<h2>Forecast for ${place}</h2>`;
+
+                // Create a grid container for the forecast
+                const forecastGrid = document.createElement('div');
+                forecastGrid.className = 'forecast-grid';
+
+                // Group data by date
+                const forecastByDate = result.forecast.reduce((acc, item) => {
+                    const date = item.date.split(" ")[0];
+                    if (!acc[date]) acc[date] = [];
+                    acc[date].push(item);
+                    return acc;
+                }, {});
+
+                // Display each date as a separate block in the grid
+                Object.keys(forecastByDate).forEach(date => {
+                    const forecastItem = document.createElement('div');
+                    forecastItem.className = 'forecast-item';
+                    forecastItem.innerHTML = `<h3>${date}</h3>`;
+                    forecastByDate[date].forEach(entry => {
+                        forecastItem.innerHTML += `
+                            <p><strong>Time:</strong> ${entry.date.split(" ")[1]}</p>
+                            <p><strong>Temperature:</strong> ${entry.temperature}°C</p>
+                            <p><strong>Weather:</strong> ${entry.weather}</p>
+                            <hr>
+                        `;
+                    });
+                    forecastGrid.appendChild(forecastItem);
+                });
+
+                resultElement.appendChild(forecastGrid);
+            } else {
+                resultElement.textContent = `Error: ${result.error}`;
+            }
+        });
+        
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weatherly - Weather Forecast & Rain Alert</title>
+    <link rel="icon" href="/static/images/logo-removebg-preview (1).png" type="image/png">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h1>Weather Forecast</h1>
+        <form id="forecastForm" class="input-box">
+            <input type="text" id="place" placeholder="Enter location..." required>
+            <div class="button-container">
+                <button type="submit">Get Forecast</button>
+                <button type="button" onclick="getRainAlert()">Check for Rain</button>
+            </div>
+        </form>
+        <div id="result" class="result-box hidden"></div>
+        <div id="alert"></div>
+    </div>
+   
+    <script>
+        // Weather Forecast Functionality
+        document.getElementById('forecastForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const place = document.getElementById('place').value;
+
+            // Fetch the forecast data from your server
+            const response = await fetch(`/forecast?place=${place}`);
+            const result = await response.json();
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = ''; // Clear previous results
+            resultElement.classList.remove('hidden'); // Make sure the result box is visible
+
+            if (response.ok) {
+                resultElement.innerHTML = `<h2>Forecast for ${place}</h2>`;
+
+                // Create a grid container for the forecast
+                const forecastGrid = document.createElement('div');
+                forecastGrid.className = 'forecast-grid';
+
+                // Group data by date
+                const forecastByDate = result.forecast.reduce((acc, item) => {
+                    const date = item.date.split(" ")[0];
+                    if (!acc[date]) acc[date] = [];
+                    acc[date].push(item);
+                    return acc;
+                }, {});
+
+                // Display each date as a separate block in the grid
+                Object.keys(forecastByDate).forEach(date => {
+                    const forecastItem = document.createElement('div');
+                    forecastItem.className = 'forecast-item';
+                    forecastItem.innerHTML = `<h3>${date}</h3>`;
+                    forecastByDate[date].forEach(entry => {
+                        forecastItem.innerHTML += `
+                            <p><strong>Time:</strong> ${entry.date.split(" ")[1]}</p>
+                            <p><strong>Temperature:</strong> ${entry.temperature}°C</p>
+                            <p><strong>Weather:</strong> ${entry.weather}</p>
+                            <hr>
+                        `;
+                    });
+                    forecastGrid.appendChild(forecastItem);
+                });
+
+                resultElement.appendChild(forecastGrid);
+            } else {
+                resultElement.textContent = `Error: ${result.error}`;
+            }
+        });
+
+        // Rain Alert Functionality
+        async function getRainAlert() {
+            const place = document.getElementById('place').value;
+            if (!place) {
+                document.getElementById('alert').innerText = "Please enter a location.";
+                return;
+            }
+
+            try {
+                const response = await fetch('/rain-alert', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ city: place })
+                });
+                const data = await response.json();
+                document.getElementById('alert').innerText = data.message;
+            } catch (error) {
+                document.getElementById('alert').innerText = "Error: Unable to retrieve rain alert.";
+            }
+        }
+    </script>
+</body>
+</html>

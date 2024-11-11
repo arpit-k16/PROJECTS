@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weatherly-Rain Alert</title>
+    <link rel="icon" href="/static/images/logo-removebg-preview (1).png" type="image/png">
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- <style>
+        body {
+            background-image:url();
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+        h1 {
+            color: #007BFF;
+        }
+        #alert {
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style> -->
+</head>
+<body class="rainy-background">
+<div class="container">
+    <h1>Rain Alert</h1>
+    <button onclick="getRainAlert()">Check for Rain</button>
+    <div id="alert"></div>
+</div>
+   
+
+    <script>
+        async function getRainAlert() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async position => {
+                    const { latitude, longitude } = position.coords;
+
+                    try {
+                        const response = await fetch('/rain-alert', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ latitude, longitude })
+                        });
+                        const data = await response.json();
+                        document.getElementById('alert').innerText = data.message;
+                    } catch (error) {
+                        document.getElementById('alert').innerText = "Error: Unable to retrieve rain alert.";
+                    }
+                }, () => {
+                    document.getElementById('alert').innerText = "Error: Unable to access your location.";
+                });
+            } else {
+                document.getElementById('alert').innerText = "Error: Geolocation is not supported by this browser.";
+            }
+        }
+    </script>
+
+</body>
+</html>
