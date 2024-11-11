@@ -1,10 +1,4 @@
-![image](https://github.com/user-attachments/assets/0f543e83-8ec8-4a7a-89a5-c477e48d93ea)
-![image](https://github.com/user-attachments/assets/5e65a28f-2094-46f4-b61b-3be441c496ad)
-![image](https://github.com/user-attachments/assets/96895ba8-874a-4f1f-b8de-384e55322d2e)
-![image](https://github.com/user-attachments/assets/be559a26-b3e7-497b-8998-e9c783c761ff)
 ![Uploading image.png…]()
-
-
 
 # Weatherly 🌦️
 
@@ -82,13 +76,14 @@ OPENWEATHER_API_KEY='your_api_key_here'
 You can update the CSS file (`style.css`) under `static/` for further styling customization.
 
 ### Home Page
-![Home Page](path/to/homepage-screenshot.png)
+![Home Page](https://github.com/user-attachments/assets/0f543e83-8ec8-4a7a-89a5-c477e48d93ea)
 
 ### Weather Forecast
-![Weather Forecast](path/to/forecast-screenshot.png)
+![Weather Forecast](https://github.com/user-attachments/assets/5e65a28f-2094-46f4-b61b-3be441c496ad)
+![Weather Forecast](https://github.com/user-attachments/assets/5e65a28f-2094-46f4-b61b-3be441c496ad)
 
 ### Rain Alert
-![Rain Alert](path/to/rain-alert-screenshot.png)
+![Rain Alert](https://github.com/user-attachments/assets/be559a26-b3e7-497b-8998-e9c783c761ff)
 
 ## License
 
